@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Stammdaten</title>
+
+        <style>
+            body {
+                font-family: sans-serif;
+                margin: 40px auto;
+                width: 800px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Personen</h1>
+        <ul id="personenListe"></ul>
+
+        <script type="module">
+            const response = await fetch('http://localhost:3000/stammdaten');
+            const personen = await response.json();
+
+            const personenListe = document.querySelector('#personenListe');
+
+            for (const person of personen) {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${person.firstName} ${person.lastName}`;
+                personenListe.appendChild(listItem);
+            }
+        </script>
+    </body>
+</html>
